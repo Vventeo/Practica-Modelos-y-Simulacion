@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>938</width>
+    <height>636</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox_t_llegada">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>241</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tiempo de Llegada</string>
+    </property>
+    <widget class="QCheckBox" name="checkBox_t_llegada_constante">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo Constante</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_min">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Min</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_constante">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>25</string>
+     </property>
+     <property name="placeholderText">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_max">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_distribucion_t_llegada">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Uniforme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_abandono">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>20</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Abandono de Cola</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_t_abandono">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>40</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+    <property name="placeholderText">
+     <string>Tiempo de Abandono</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_t_fin_servicio">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>241</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tiempo de Fin de Servicio</string>
+    </property>
+    <widget class="QCheckBox" name="checkBox_t_fin_servicio_constante">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo Constante</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_fin_servicio_max">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_fin_servicio_constante">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>35</string>
+     </property>
+     <property name="placeholderText">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_fin_servicio_min">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Min</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_distribucion_t_fin_servicio">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Uniforme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_zona_seguridad">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>80</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zona de Seguridad</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_t_zona_seguridad">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>100</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Tiempo de Zona de Seg.</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Simular">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>150</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Iniciar Simulacion</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_descanso">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>20</y>
+      <width>231</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Descanso</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo de Descanso</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_descanso_constante">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_descanso_min">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>70</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Min</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_descanso_max">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>70</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_descanso_constante">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_regreso_descanso_constante">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>120</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_regreso_descanso_min">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>150</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Min</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_tiempo_regreso_descanso_max">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>150</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_distribucion_t_descanso">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Uniforme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo entre Descansos</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_distribucion_t_entre_descanso">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>150</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Uniforme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_tabla_sim">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>921</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tabla de Simulacion Manual</string>
+    </property>
+    <widget class="QTableWidget" name="tableWidget_tabla_sim">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>901</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="accessibleName">
+      <string/>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="columnCount">
+      <number>0</number>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_tipos_clientes">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>20</y>
+      <width>241</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Diferentes Tipos de Clientes</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <widget class="QCheckBox" name="checkBox_t_llegada_B_constante">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_B_min">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Min</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_B_constante">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tiempo Constante</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_t_llegada_B_max">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>60</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Max</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_distribucion_t_llegada_B">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Uniforme</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_t_simulacion">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>150</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>500</string>
+    </property>
+    <property name="placeholderText">
+     <string>Tiempo de Zona de Seguridad</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>160</y>
+      <width>158</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Tiempo de Simulacion</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>938</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <tabstops>
+  <tabstop>checkBox_t_llegada_constante</tabstop>
+  <tabstop>lineEdit_t_llegada_B_constante</tabstop>
+  <tabstop>lineEdit_t_llegada_B_min</tabstop>
+  <tabstop>lineEdit_t_llegada_B_max</tabstop>
+  <tabstop>checkBox_t_fin_servicio_constante</tabstop>
+  <tabstop>checkBox_t_llegada_B_constante</tabstop>
+  <tabstop>checkBox_descanso_constante</tabstop>
+  <tabstop>lineEdit_tiempo_descanso_constante</tabstop>
+  <tabstop>lineEdit_tiempo_descanso_min</tabstop>
+  <tabstop>lineEdit_tiempo_descanso_max</tabstop>
+  <tabstop>lineEdit_tiempo_regreso_descanso_constante</tabstop>
+  <tabstop>lineEdit_tiempo_regreso_descanso_min</tabstop>
+  <tabstop>lineEdit_tiempo_regreso_descanso_max</tabstop>
+  <tabstop>checkBox_abandono</tabstop>
+  <tabstop>lineEdit_t_abandono</tabstop>
+  <tabstop>checkBox_zona_seguridad</tabstop>
+  <tabstop>lineEdit_t_zona_seguridad</tabstop>
+  <tabstop>pushButton_Simular</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
