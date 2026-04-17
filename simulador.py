@@ -34,23 +34,28 @@ class Simulador():
         config_llegada = params["llegada"]
         config_servicio = params["servicio"]
 
+        hay_abandono=False
+        hay_descanso=False
+        hay_zona_seguridad=False
+        hay_tipos_clientes=False
+
         
-        if "descanso" in params:
+        if params.get("descanso"):
             hay_descanso=True
             config_t_descanso=params["descanso"]["tiempo_descanso"]
             config_t_entre_descansos=params["descanso"]["tiempo_entre_descanso"]
         
-        if "abandono" in params:
+        if params.get("abandono"):
             hay_abandono=True
             config_abandono=params["abandono"]
 
-        if "zona_seguridad" in params:
+        if params.get("zona_seguridad"):
             hay_zona_seguridad = True
             config_zona_seguridad=params["zona_seguridad"]
 
-        if "tipos_clientes" in params:
-            hay_tipos_clientes = True
-            config_llegada_clientes_B=params["zona_seguridad"]
+        # if params.get("tipos_clientes"):
+        #     hay_tipos_clientes = True
+        #     config_llegada_clientes_B=params["tipos_clientes"]
 
 
 
@@ -68,7 +73,7 @@ class Simulador():
         proximo_abandono = float('inf')
         proximo_inicio_descanso = float('inf')
         proximo_fin_descanso = float('inf')
-        proxima_llegada_cliente_B = self.generar_tiempo(config_llegada_clientes_B)
+        # proxima_llegada_cliente_B = self.generar_tiempo(config_llegada_clientes_B)
         proxima_zona_seguridad = float('inf')
 
         tabla = []
@@ -92,11 +97,11 @@ class Simulador():
                 ("llegada", proxima_llegada),
                 ("fin_servicio", proximo_fin_servicio),               
                 ]
-            headers
+    
 
             if hay_abandono: eventos.append(("abandono", proximo_abandono))
             if hay_descanso: eventos.extend( [ ("inicio_descanso", proximo_inicio_descanso), ("fin_descanso", proximo_fin_descanso) ] )
-            if hay_tipos_clientes: eventos.append(("llegada_clientes_B", proxima_llegada_cliente_B))
+            # if hay_tipos_clientes: eventos.append(("llegada_clientes_B", proxima_llegada_cliente_B))
             if hay_zona_seguridad: eventos.append(("zona_seguridad", proxima_zona_seguridad))
 
             # determinar evento con prioridad
@@ -145,31 +150,31 @@ class Simulador():
 
 
 
-            if tipo_evento=="llegada_b":
+            # if tipo_evento=="llegada_b":
 
-                proxima_llegada_cliente_B += self.generar_tiempo(config_llegada_clientes_B)
+            #     proxima_llegada_cliente_B += self.generar_tiempo(config_llegada_clientes_B)
 
-                cliente = {
-                    "llegada": tiempo_actual,
-                }
+            #     cliente = {
+            #         "llegada": tiempo_actual,
+            #     }
 
-                if hay_descanso:
-                    if servidor_presente and (not servidor_ocupado):
-                        servidor_ocupado = True
-                        proximo_fin_servicio = tiempo_actual + self.generar_tiempo(config_servicio)
+            #     if hay_descanso:
+            #         if servidor_presente and (not servidor_ocupado):
+            #             servidor_ocupado = True
+            #             proximo_fin_servicio = tiempo_actual + self.generar_tiempo(config_servicio)
 
-                    else:
-                        cola_b.append(cliente)
-                        if hay_abandono:
-                            cliente["abandono"] = tiempo_actual + self.generar_tiempo(config_abandono)
+            #         else:
+            #             cola_b.append(cliente)
+            #             if hay_abandono:
+            #                 cliente["abandono"] = tiempo_actual + self.generar_tiempo(config_abandono)
 
-                if not servidor_ocupado:
-                    servidor_ocupado = True
-                    proximo_fin_servicio = tiempo_actual + self.generar_tiempo(config_servicio)
-                else:
-                    cola_b.append(cliente)
-                    if hay_abandono:
-                            cliente["abandono"] = tiempo_actual + self.generar_tiempo(config_abandono)
+            #     if not servidor_ocupado:
+            #         servidor_ocupado = True
+            #         proximo_fin_servicio = tiempo_actual + self.generar_tiempo(config_servicio)
+            #     else:
+            #         cola_b.append(cliente)
+            #         if hay_abandono:
+            #                 cliente["abandono"] = tiempo_actual + self.generar_tiempo(config_abandono)
 
                 
 
@@ -179,7 +184,7 @@ class Simulador():
                 clientes_atendidos += 1
 
                 if len(cola) > 0:
-                    cliente = cola.popleft()  # FIFO correcto
+                    cliente = cola.popleft()
                     proximo_fin_servicio = tiempo_actual + self.generar_tiempo(config_servicio)
                     
                 else:
@@ -227,32 +232,32 @@ class Simulador():
             tabla.append([
                 tiempo_actual,
                 proxima_llegada,
-                proxima_llegada_cliente_B,
+                # proxima_llegada_cliente_B,
                 proximo_abandono,
                 proximo_fin_servicio,
-                proximo_inicio_descanso,
-                proximo_fin_descanso,
-                proxima_zona_seguridad,
+                # proximo_inicio_descanso,
+                # proximo_fin_descanso,
+                # proxima_zona_seguridad,
                 servidor_ocupado,
-                servidor_presente,
+                # servidor_presente,
                 len(cola),
-                len(cola_b),
+                # len(cola_b),
                 tipo_evento
             ])
 
         
         headers=["Tiempo Actual",
                  "Prox Llegada", 
-                 "Prox Llegada B", 
+                #  "Prox Llegada B", 
                  "Prox Abandono", 
                  "Prox Fin Servicio",
-                 "Prox Inicio Descanso", 
-                 "Prox Fin Descanso",
-                 "Prox Zona Seguridad",
+                #  "Prox Inicio Descanso", 
+                #  "Prox Fin Descanso",
+                #  "Prox Zona Seguridad",
                  "Serv Ocupado",
-                 "Serv Presente",
+                #  "Serv Presente",
                  "Cola",
-                 "Cola B",
+                #  "Cola B",
                  "Evento"]
 
 

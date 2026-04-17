@@ -69,11 +69,14 @@ while clientes_atendidos < NUM_CLIENTES:
             llegada_cliente = cola.popleft()
             proximo_fin_servicio = tiempo_actual + TIEMPO_SERVICIO
         elif len(cola_b)>0:
-            
+            llegada_cliente = cola_b.popleft()
+            proximo_fin_servicio = tiempo_actual + TIEMPO_SERVICIO       
         else:
             servidor_ocupado = False
             proximo_fin_servicio = float('inf')
 
+
+    # LLEGADA DE CLIENTE B
     else:
         proxima_llegada_b =tiempo_actual + TIEMPO_LLEGADA_B
 
@@ -81,7 +84,6 @@ while clientes_atendidos < NUM_CLIENTES:
             servidor_ocupado = True
             proximo_fin_servicio = tiempo_actual + TIEMPO_SERVICIO
             
-
         else:
             cola_b.append(tiempo_actual)
         

@@ -4,22 +4,23 @@ from collections import deque
 
 #Constantes
 TIEMPO_LLEGADA = 45
+TIEMPO_LLEGADA_B = 30
 TIEMPO_SERVICIO = 35
 TIEMPO_SIMULACION=300
-TIEMPO_DESCANSO=random.randint(15,35)
-TIEMPO_ACTIVIDAD=random.randint(40,60)
+
 
 #Variables de Estado
 tiempo_actual = 0
 servidor_ocupado = False
 servidor_presente = True
 cola = deque()
+cola_b =deque()
 tabla=[]
 
 #Variables de Eventos
 proxima_llegada = TIEMPO_LLEGADA
+proxima_llegada_b = TIEMPO_LLEGADA_B
 proximo_fin_servicio = float('inf')
-proximo_descanso=TIEMPO_ACTIVIDAD
 proximo_fin_descanso=float('inf')
 
 eventos=[]
@@ -36,16 +37,14 @@ while tiempo_actual < TIEMPO_SIMULACION:
 
     eventos = [
                 ("llegada", proxima_llegada),
-                ("fin_servicio", proximo_fin_servicio),   
-                ("inicio_descanso", proximo_descanso),
-                ("fin_descanso", proximo_fin_descanso)           
+                ("fin_servicio", proximo_fin_servicio),
+                ("llegada_b", proxima_llegada_b)               
                 ]
 
     def prioridad(e):
         return {"fin_servicio": 1, 
                 "llegada": 2, 
-                "inicio_descanso": 3,
-                "fin_descanso": 4}[e]
+                "llegada_b": 3}[e]
 
     eventos.sort(key=lambda x: (x[1], prioridad(x[0])))
     proximo_evento, tiempo_evento = eventos[0]
@@ -68,6 +67,16 @@ while tiempo_actual < TIEMPO_SIMULACION:
                 cola.append(tiempo_actual)
             
 
+
+        case "llegada_b":
+            proxima_llegada_b=tiempo_actual+TIEMPO_LLEGADA_B
+
+            if servidor_ocupado==False and servidor_presente==True:
+                servidor_ocupado = True
+                proximo_fin_servicio = tiempo_actual + TIEMPO_SERVICIO
+                
+            else:
+                cola_b.append(tiempo_actual)
         
 
 
@@ -78,48 +87,35 @@ while tiempo_actual < TIEMPO_SIMULACION:
             if len(cola) > 0:
                 llegada_cliente = cola.popleft()
                 proximo_fin_servicio = tiempo_actual+ TIEMPO_SERVICIO
+            # elif len(cola_b)>0:
+            #     llegada_cliente=cola_b.popleft()
+            #     proximo_fin_servicio =tiempo_actual + TIEMPO_SERVICIO
             else:
                 servidor_ocupado = False
                 proximo_fin_servicio = float('inf')
 
 
-        case "inicio_descanso":
-
-            servidor_presente=False
-            proximo_descanso=float("inf")
-            proximo_fin_descanso=tiempo_actual+TIEMPO_DESCANSO
-
-            if servidor_ocupado==True:
-                proximo_fin_servicio+=TIEMPO_DESCANSO
-
-            
-
-        case "fin_descanso":
-
-            servidor_presente=True
-            proximo_fin_descanso=float("inf")
-            proximo_descanso=tiempo_actual+TIEMPO_ACTIVIDAD
+ 
 
 
     tabla.append([tiempo_actual,
                   proxima_llegada,
+                  proxima_llegada_b,
                   proximo_fin_servicio,
-                  proximo_descanso,
-                  proximo_fin_descanso,
-                  servidor_presente,
                   servidor_ocupado,
                   len(cola),
+                  len(cola_b),
                   proximo_evento])
+    
 
 print(tabulate(tabla, 
                headers=["Tiempo Actual",
                         "Prox Llegada",
+                        "Prox Llegada B",
                         "Prox Salida",
-                        "Prox Descanso",
-                        "Prox Fin Descanso",
-                        "Trabajando",
-                        "PS" , 
+                        "PS", 
                         "Cola", 
+                        "Cola B",
                         "Evento"]))
         
 print("\n",clientes_atendidos)
